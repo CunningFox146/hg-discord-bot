@@ -2,8 +2,6 @@ const UPDATE_INTERVAL = 3000;
 
 class Scheduler
 {
-	channel = null;
-
 	constructor(channel, schedule)
 	{
 		this.channel = channel;
