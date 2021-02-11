@@ -5,7 +5,6 @@ class HgBot{
 	bot = null;
 
 	constructor(token){
-		console.log("HgBot ctor called")
 		const bot = new Discord.Client();
 		bot.commands = new Discord.Collection();
 		
@@ -17,7 +16,7 @@ class HgBot{
 		this.RegisterListeners(bot)
 	}
 
-	SendMessage = (chat, msg)=>{
+	SendMessage(chat, msg){
 		this.bot.channels.fetch(chat)
 			.then(channel => {
 				if (channel)
@@ -27,7 +26,7 @@ class HgBot{
 			});
 	}
 
-	RegisterListeners = ()=>{
+	RegisterListeners(){
 		const bot = this.bot
 		bot.on('ready', () => {
 			console.log(`Logged in as ${bot.user.tag}!`);
@@ -36,18 +35,20 @@ class HgBot{
 		bot.on('message', msg => {
 			const args = msg.content.split(/ +/);
 			const emoji = args.shift(); // This is the first arg (emoji)
+
 			if (emoji != global.Constants.CommandStart) return;
+
 			const command = args.shift().toLowerCase(); // Get and remove first element, assuming it's the command
 
-			console.log(`Called command: ${command}`);
-
 			if (!bot.commands.has(command)) return;
+
+			console.log(`${msg.author.tag} called command: ${command}`);
 
 			try {
 				bot.commands.get(command).execute(msg, args);
 			} catch (error) {
 				console.error(error);
-				msg.reply('there was an error trying to execute that command!');
+				msg.reply("Something went wrong. Ping Fox and tell him to fix it");
 			}
 		});
 
@@ -56,11 +57,17 @@ class HgBot{
 		})
 	}
 
-	OnGameStarted = (state) =>{
+	OnGameStarted(state){
 		console.log("Game started!")
 
-		this.SendMessage(global.Constants.NotificationChannel.ru, global.Strings.Rus.GamesStart)
-		this.SendMessage(global.Constants.NotificationChannel.en, global.Strings.Eng.GamesStart)
+		this.SendMessage(global.Constants.NotificationChannel.ru, global.Strings.GamesStart.rus)
+		this.SendMessage(global.Constants.NotificationChannel.en, global.Strings.GamesStart.eng)
+	}
+
+	GetLanguage = (message)=> (message.channel.id == global.Constants.NotificationChannel.ru) ? "rus" : "eng";
+
+	GetString(message, string, data){
+		return global.Strings[string].Get(this.GetLanguage(message), data)
 	}
 }
 

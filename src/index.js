@@ -9,6 +9,7 @@ global.Constants = {
 	},
 	CommandStart: process.env.COMMAND_START,
 	HungryRole: process.env.HUNGRY_ROLE_ID,
+	ConnectLink: process.env.SERVER_CONNECT_LINK,
 }
 global.Strings = require("./strings")
 global.eventEmmiter = new EventEmitter()

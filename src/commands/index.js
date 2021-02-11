@@ -1,5 +1,6 @@
 const COMMANDS = {
 	Ping: require('./ping'),
+	Status: require('./status'),
 }
 
 function LoadCommands(bot){
