@@ -21,6 +21,7 @@ const Strings = {
 		`<@&${HungryRole}> Игры начались! Введи "HG" в поиске чтоб найти сервер, либо используй ссылку (игра должны быть закрыта)\n${ConnectLink}`
 	),
 
+	/*
 	GameStatus: new Record(
 		function(data){
 			let {day, isClosed, timeUntillClosed, players, alive} = data;
@@ -34,8 +35,53 @@ const Strings = {
 			"The current game is **closed** for newcomers. See you on the next games!" :
 			`*Game status:* Day: **${day}** (the game will be closed for newcomers in ${timeUntillClosed} days). Players on server: ${players} (alive: ${alive})`
 		},
+	),*/
+
+	StatusTitle: new Record(
+		"Game status",
+		"Статус игры"
+	),
+	StatusNoGames: new Record(
+		"No active games",
+		"Нет активных игр"
+	),
+	StatusNoGamesDesc: new Record(
+		"Type \"when hg\" to get current games schedule",
+		"Напиши \"когда игры\" чтоб узнать текущее расписание"
+	),
+	StatusClosed: new Record(
+		"The current game is closed for newcomers.",
+		"Текущая игра уже закрыта для новых игроков."
+	),
+	StatusClosedDesc: new Record(
+		"See you on the **next** games!",
+		"Увидимся на **следующих** играх!"
+	),
+	StatusDay: new Record(
+		"Day: ",
+		"День: "
+	),
+	StatusCloses: new Record(
+		"Closes for newcomers in:",
+		"Закроется для новых игроков через:"
+	),
+	Days: new Record(
+		"days",
+		"дней"
+	),
+	StatusPlayers: new Record(
+		"Players on server:",
+		"Игроков на сервере:"
+	),
+	StatusAlive: new Record(
+		"Aliver:",
+		"Живых:"
 	),
 
+	CommandTitle: new Record(
+		"Commands:",
+		"Команды:"
+	),
 	Commands: {
 		help: new Record(
 			"Displays all avalible comamands",
@@ -49,7 +95,9 @@ const Strings = {
 			"Displays status for the current game",
 			"Показывает статус текущей игры"
 		),
-	}
+	},
+
+
 }
 
 module.exports = Strings

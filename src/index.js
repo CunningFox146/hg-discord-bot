@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+const Discord = require('discord.js');
+global.Discord = Discord;
+
 const EventEmitter = require('events');
 
 global.Constants = {
@@ -10,6 +13,7 @@ global.Constants = {
 	CommandStart: process.env.COMMAND_START,
 	HungryRole: process.env.HUNGRY_ROLE_ID,
 	ConnectLink: process.env.SERVER_CONNECT_LINK,
+	EmbedColor: "#f2e340",
 }
 global.Strings = require("./strings")
 global.eventEmmiter = new EventEmitter()

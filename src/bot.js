@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = global.Discord;
 const Commands = require('./commands')
 
 class HgBot{
@@ -68,7 +68,9 @@ class HgBot{
 	GetLanguage = (message)=> (message.channel.id == global.Constants.NotificationChannel.ru) ? "rus" : "eng";
 
 	GetString(message, string, data){
-		return global.Strings[string].Get(this.GetLanguage(message), data)
+		if (string in global.Strings)
+			return global.Strings[string].Get(this.GetLanguage(message), data);
+		throw new Error(`Invalid string ${string}`);
 	}
 }
 

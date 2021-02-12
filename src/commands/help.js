@@ -1,13 +1,17 @@
+const Discord = global.Discord;
+
 module.exports = {
     name: "help",
     execute(msg, args) {
-		let str = ""
+		const reply = new Discord.MessageEmbed()
+			.setColor(global.Constants.EmbedColor)
+			.setTitle(global.Bot.GetString(msg, "CommandTitle"))
 		
         Array.from(global.Bot.commands.values()).forEach(command => {
 			const name = command.name;
-			str += `${global.Strings.Commands[name].Get(global.Bot.GetLanguage(msg))}\n`;
+			reply.addField(name, global.Strings.Commands[name].Get(global.Bot.GetLanguage(msg)))
 		});
-		msg.reply(str);
 		
+		msg.channel.send(reply);
     },
 };

@@ -1,5 +1,5 @@
 const COMMANDS = {
-	Ping: require('./ping'),
+	// Ping: require('./ping'),
 	Status: require('./status'),
 	Help: require('./help'),
 }
