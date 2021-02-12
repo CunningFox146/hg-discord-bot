@@ -3,12 +3,13 @@ const Commands = require('./commands')
 
 class HgBot{
 	bot = null;
+	commandStart = global.Constants.CommandStart;
+	commands = new Discord.Collection();
 
 	constructor(token){
 		const bot = new Discord.Client();
-		bot.commands = new Discord.Collection();
 		
-		Commands.LoadCommands(bot);
+		Commands.LoadCommands(this.commands);
 
 		this.bot = bot;
 
@@ -36,16 +37,16 @@ class HgBot{
 			const args = msg.content.split(/ +/);
 			const emoji = args.shift(); // This is the first arg (emoji)
 
-			if (emoji != global.Constants.CommandStart) return;
+			if (emoji != this.commandStart) return;
 
 			const command = args.shift().toLowerCase(); // Get and remove first element, assuming it's the command
 
-			if (!bot.commands.has(command)) return;
+			if (!this.commands.has(command)) return;
 
 			console.log(`${msg.author.tag} called command: ${command}`);
 
 			try {
-				bot.commands.get(command).execute(msg, args);
+				this.commands.get(command).execute(msg, args);
 			} catch (error) {
 				console.error(error);
 				msg.reply("Something went wrong. Ping Fox and tell him to fix it");

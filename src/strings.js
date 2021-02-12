@@ -35,6 +35,21 @@ const Strings = {
 			`*Game status:* Day: **${day}** (the game will be closed for newcomers in ${timeUntillClosed} days). Players on server: ${players} (alive: ${alive})`
 		},
 	),
+
+	Commands: {
+		help: new Record(
+			"Displays all avalible comamands",
+			"Выводит все доступные команды"
+		),
+		ping: new Record(
+			"Pong",
+			"Понг"
+		),
+		status: new Record(
+			"Displays status for the current game",
+			"Показывает статус текущей игры"
+		),
+	}
 }
 
 module.exports = Strings

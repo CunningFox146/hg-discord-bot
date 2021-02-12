@@ -1,11 +1,12 @@
 const COMMANDS = {
 	Ping: require('./ping'),
 	Status: require('./status'),
+	Help: require('./help'),
 }
 
-function LoadCommands(bot){
+function LoadCommands(map){
 	Object.keys(COMMANDS).map(key => {
-		bot.commands.set(COMMANDS[key].name, COMMANDS[key]);
+		map.set(COMMANDS[key].name, COMMANDS[key]);
 	});
 }
 
